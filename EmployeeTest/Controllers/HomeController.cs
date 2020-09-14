@@ -1,6 +1,8 @@
-﻿using System;
+﻿using EmployeeTest.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,9 +10,11 @@ namespace EmployeeTest.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            var employeeClient = new EmployeeClient();
+            var employeeReponse = await employeeClient.GetAllEmployees();
+            return View(employeeReponse.Data);
         }
 
 

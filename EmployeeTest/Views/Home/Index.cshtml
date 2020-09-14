@@ -1,5 +1,8 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model List<EmployeeTest.Models.EmployeeModel>
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="jumbotron">
@@ -9,6 +12,34 @@
 
 <div class="row">
     <div class="col-md-12">
-        
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Employee Name
+                        </th>
+                        <th>
+                            Employee Salary
+                        </th>
+                        <th>
+                            Employee Age
+                        </th>
+                        <th>
+                            Image Url
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @*@foreach(var employee in Model)
+                    {
+                        employee.
+                    }*@
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

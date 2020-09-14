@@ -1,4 +1,5 @@
-﻿using EmployeeTest.Services;
+﻿using EmployeeTest.Models;
+using EmployeeTest.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,24 +13,17 @@ namespace EmployeeTest.Controllers
     {
         public async Task<ActionResult> Index()
         {
-            var employeeClient = new EmployeeClient();
-            var employeeReponse = await employeeClient.GetAllEmployees();
-            return View(employeeReponse.Data);
-        }
-
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            try
+            {
+                var employeeClient = new EmployeeClient();
+                var employeeReponse = await employeeClient.GetAllEmployees();
+                return View(employeeReponse);
+            }
+            catch (Exception ex)
+            {
+                return View("Error", new ErrorModel { Message = ex.Message });
+            }
+            
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model List<EmployeeTest.Models.EmployeeModel>
+﻿@model EmployeeTest.Models.EmployeeResponseModel
 
 @{
     ViewBag.Title = "Home";
@@ -7,7 +7,24 @@
 
 <div class="jumbotron">
     <h1>ASP.NET MVC</h1>
-    <p class="lead">Test App</p>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-start">
+                <span>Average Salary:</span>
+                <h4 class="pl-2 text-danger">
+                    @Model.AverageSalary.ToString("C0")
+                </h4>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="d-flex justify-content-start">
+                <span>Average Age:</span>
+                <h4 class="pl-2 text-danger">
+                    @Model.AverageAge
+                </h4>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="row">
@@ -26,7 +43,13 @@
                             Employee Salary
                         </th>
                         <th>
+                            Is Above Avg. Salary
+                        </th>
+                        <th>
                             Employee Age
+                        </th>
+                        <th>
+                            Is Above Avg. Age
                         </th>
                         <th>
                             Image Url
@@ -34,10 +57,50 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @*@foreach(var employee in Model)
+                    @foreach(var employee in Model.Data)
                     {
-                        employee.
-                    }*@
+                    <tr>
+                        <td>
+                            @employee.Id
+                        </td>
+                        <td>
+                            @employee.EmployeeName
+                        </td>
+                        <td>
+                            @employee.EmployeeSalary
+                        </td>
+                        <td>
+                            @{
+                                if (employee.EmployeeSalary > Model.AverageSalary)
+                                {
+                                    <span class="text-success">YES</span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger">NO</span>
+                                }
+                            }
+                        </td>
+                        <td>
+                            @employee.EmployeeAge
+                        </td>
+                        <td>
+                            @{
+                                if (employee.EmployeeAge > Model.AverageAge)
+                                {
+                                    <span class="text-success">YES</span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger">NO</span>
+                                }
+                            }
+                        </td>
+                        <td>
+                            @employee.ProfileImage
+                        </td>
+                    </tr>
+                    }
                 </tbody>
             </table>
         </div>

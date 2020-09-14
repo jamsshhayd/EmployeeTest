@@ -21,7 +21,6 @@ namespace EmployeeTest.Services
         protected async Task<string> MakeRequest(string url)
         {
             HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            request.Date = DateTime.UtcNow;
             request.Accept = "application/json";
             using (HttpWebResponse response = await request.GetResponseAsync() as HttpWebResponse)
             {
